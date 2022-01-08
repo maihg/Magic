@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /*animation: App-logo-spin infinite 20s linear;*/
   }
 }
 
@@ -26,6 +26,29 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.App-input, .App-button {
+  font-size: calc(10px + 2vmin);
+}
+
+.App-input {
+  margin: 0 0 5rem 0;
+}
+
+.App-button {
+  border-radius: 1.5rem;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  background-color: #61dafb;
+}
+
+.App-button:hover {
+  background-color: #fff;
+}
+
+.App-button:active {
+  background-color: #ddd;
 }
 
 @keyframes App-logo-spin {

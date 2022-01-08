@@ -1,0 +1,32 @@
+.flex--spaced-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex--col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.counter-row-button {
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+}
+
+@media (hover: hover) {
+    .counter-row-button:hover {
+        cursor: pointer;
+        background-color: #dddddd;
+    }
+}
+
+.counter-row-button:active {
+    cursor: pointer;
+    background-color: #bbb;
+}

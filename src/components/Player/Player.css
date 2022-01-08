@@ -1,0 +1,70 @@
+.player {
+    padding: 1.5rem 2rem;
+    margin: 0.8rem;
+    border: 2px solid #ffffff;
+    border-radius: 1.5rem;
+    width: 70vw;
+    max-width: 800px;
+}
+.player h1 {
+    transform: translateY(-0.2rem);
+}
+.player p {
+    margin: 0.3rem;
+}
+.card-top {
+    display: flex;
+    justify-content: space-between;
+}
+.card-bottom {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ffffff;
+    text-align: left;
+}
+
+.flex--centered-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flex--spaced-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex--col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.points-arrow {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 0.3rem;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.color--1 {
+    background-color: rgb(100, 149, 237);
+}
+.color--2 {
+    background-color: rgb(32, 178, 170);
+}
+.color--3 {
+    background-color: rgb(219, 112, 147);
+}
+.color--4 {
+    background-color: rgb(222, 184, 135);
+}
