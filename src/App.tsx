@@ -15,7 +15,7 @@ function App() {
   const [noOfPlayers, setNoOfPlayers] = useState(2);
 
   return (
-    <Router>
+    <Router basename="/Magic">
         <Routes>
           <Route path="/" element={<Home setNoOfPlayers={setNoOfPlayers} noOfPlayers={noOfPlayers}/>}/>
           <Route path="/counter" element={<Counter noOfPlayers={noOfPlayers}/>}/>
