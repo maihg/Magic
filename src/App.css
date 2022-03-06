@@ -28,19 +28,24 @@
   color: #61dafb;
 }
 
-.App-input, .App-button {
-  font-size: calc(10px + 2vmin);
+.App-input, .App-button, .App-button-secondary {
+  /*font-size: calc(10px + 2vmin);*/
+  font-size: 16px;
 }
 
 .App-input {
-  margin: 0 0 5rem 0;
+  margin: 0;
 }
 
-.App-button {
+.App-button, .App-button-secondary{
   border-radius: 1.5rem;
   border: none;
   padding: 0.5rem 1.2rem;
+}
+
+.App-button {
   background-color: #61dafb;
+  margin: 4rem;
 }
 
 .App-button:hover {
@@ -49,6 +54,24 @@
 
 .App-button:active {
   background-color: #ddd;
+}
+
+.App-button-secondary {
+  background-color: #fff;
+  margin: 0.3rem;
+}
+
+.App-button-secondary:hover {
+  background-color: #ddd;
+}
+
+.App-button:disabled,
+.App-button-secondary:disabled {
+  background-color: #959a9a;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes App-logo-spin {

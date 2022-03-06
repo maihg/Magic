@@ -1,19 +1,45 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Home.css';
 import { useNavigate } from "react-router-dom"
+import PlayerInput from '../PlayerInput/PlayerInput';
 
 interface Props {
-  noOfPlayers: number;
-  setNoOfPlayers: React.Dispatch<React.SetStateAction<number>>;
+  players: { name: string, id: number }[];
+  setPlayers: React.Dispatch<React.SetStateAction<{name: string, id: number }[]>>;
 }
 
-const Home: React.FC<Props> = ({ noOfPlayers, setNoOfPlayers}) => {
+const Home: React.FC<Props> = ({ players, setPlayers}) => {
   const navigate = useNavigate();
 
-  function goToCounter() {
-    console.log("Antall spillere: " + noOfPlayers);
+  const [nextId, setNextId] = useState<number>(players.length);
+
+  useEffect(() => {
+    console.log(players);
+  }, [players]);
+
+  const addPlayer = () => {
+    console.log('addPlayer');
+    if (players.length > 3) return;
+    setNextId(nextId => nextId + 1);
+    setPlayers(players => [...players, { name: '', id: nextId }]);
+  };
+
+  const removePlayer = (id: number) => {
+    console.log('removePlayer');
+    setPlayers(names => names.filter(n => n.id !== id));
+  };
+
+  const goToCounter = () => {
+    console.log("Antall spillere: " + players.length);
+    const namesInPlace = players.filter(player => player.name === '').length;
+    if (namesInPlace > 0) {
+      alert('Du må fylle inn navn på alle spillerene');
+      return;
+    }
     navigate('/counter')
-  }
+  };
+
+
 
   return (
     <div className="App">
@@ -22,10 +48,13 @@ const Home: React.FC<Props> = ({ noOfPlayers, setNoOfPlayers}) => {
 
         <div>
           <p>Velg antall spillere</p>
-          <input id="no-of-players" type="number" min="2" max="4" className="App-input" value={noOfPlayers}
-                 onChange={(event => setNoOfPlayers(Number(event.target.value)))}/>
-          <br />
-          <button className="App-button" onClick={goToCounter}>Start!</button>
+          <div>
+            {players.length === 0 && <p>Legg til en spiller ...</p>}
+            {players.map((player) =>
+              <PlayerInput key={player.id} id={player.id} players={players} setPlayers={setPlayers} removePlayer={removePlayer} />)}
+            <button className="App-button-secondary" onClick={addPlayer} disabled={players.length > 3}>+ Legg til spiller</button>
+          </div>
+          <button className="App-button" onClick={goToCounter} disabled={players.length < 2}>Start!</button>
         </div>
       </header>
     </div>

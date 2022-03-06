@@ -11,3 +11,8 @@
     padding: 0.5rem 1.2rem;
     margin: 1.5rem 0.5rem;
 }
+
+.counter-button:hover {
+    cursor: pointer;
+    background-color: #dddddd;
+}

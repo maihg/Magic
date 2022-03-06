@@ -11,12 +11,17 @@
 
 .counter-row-button {
     display: inline-block;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.9rem;
+    width: 1.9rem;
     border-radius: 50%;
     background: transparent;
     border: none;
     color: #ffffff;
+    font-size: 150%;
+}
+
+.flex--spaced-row > p > span {
+    display: inline-block;
 }
 
 @media (hover: hover) {

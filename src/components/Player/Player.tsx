@@ -1,53 +1,47 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Player.css';
 import CounterRow from "../CounterRow/CounterRow";
 
 interface Props {
-  noOfPlayers: number;
-  /*setNoOfPlayers: React.Dispatch<React.SetStateAction<number>>;*/
-  playerNo: number;
+  players: { name: string, id: number }[];
+  player: { name: string, id: number };
   useColors: boolean;
 }
 
-const Player: React.FC<Props> = ({ noOfPlayers, playerNo, useColors }) => {
-  const [lifes, setLifes] = useState(40);
+const Player: React.FC<Props> = ({ players, player, useColors }) => {
+  const [lives, setLives] = useState(40);
   const [bottomHidden, setBottomHidden] = useState(true);
 
+  useEffect(() => {
+    if (lives === 0) alert("DEAD!");
+  }, [lives]);
+
   const subtract = () => {
-    if (lifes > 1) {
-      setLifes(lifes - 1);
-    } else if (lifes === 1) {
-      setLifes(0);
-      alert("DEAD!");
-    }
+    setLives(lives => lives - 1);
   }
 
   const renderCommanderRows = () => {
-    let indents = [];
-    for (let i = 0; i < noOfPlayers; i++) {
-      let playerText = "Spiller " + (i + 1) + " 🧛";
-      (i+1 !== playerNo) && indents.push(
-        <CounterRow text={playerText} toNumber={21} key={i} />
-      );
-    }
+    let indents: JSX.Element[] = [];
+    players.forEach((p, i) => p !== player &&
+      indents.push(<CounterRow text={`${p.name} 🧛`} toNumber={21} setLives={setLives} key={i} />))
     return indents;
   }
 
   return (
-    <div className={`player color--${useColors && playerNo}`}>
+    <div className={`player color--${useColors && (player.id%4 + 1)}`}>
 
       <div className="card-top">
         <div className="flex--col" style={{ justifyContent: "space-between", textAlign: "left"}}>
-          <p className="no-margin">Spiller #{playerNo}</p>
-          <p className="no-margin" onClick={() => setBottomHidden(!bottomHidden)}>Special damage {bottomHidden ? "↓" : "↑"}</p>
+          <p className="no-margin">{player.name}</p>
+          <p className="no-margin clickable" onClick={() => setBottomHidden(!bottomHidden)}>Special damage {bottomHidden ? "↓" : "↑"}</p>
         </div>
         <div className="flex--centered-row">
           <div className="flex--col">
-            <button className="points-arrow" onClick={() => setLifes(lifes + 1)}>▲</button>
+            <button className="points-arrow" onClick={() => setLives(lives + 1)}>▲</button>
             <button className="points-arrow" onClick={subtract}>▼</button>
           </div>
 
-          <h1>{lifes}</h1>
+          <h1>{lives}</h1>
         </div>
       </div>
 

@@ -20,7 +20,7 @@
 }
 
 .App-input {
-    margin: 0 0 5rem 0;
+    margin: 0.3rem;
 }
 
 .App-button {
@@ -30,10 +30,25 @@
     background-color: #61dafb;
 }
 
+.delete {
+    margin: 0.3rem;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    padding: 0.375rem 0.75rem;
+}
+
 .App-button:hover {
     background-color: #fff;
 }
 
 .App-button:active {
     background-color: #ddd;
+}
+
+.player-input {
+    margin: 0.3rem;
+    display: flex;
+    align-items: center;
 }

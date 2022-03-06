@@ -3,27 +3,23 @@ import './Counter.css';
 import Player from "../Player/Player";
 
 interface Props {
-  noOfPlayers: number;
+  players: { name: string, id: number }[];
 }
 
-const Counter: React.FC<Props> = ({ noOfPlayers}) => {
+const Counter: React.FC<Props> = ({ players}) => {
 
   const [useColors, setUseColors] = useState(true);
 
   const renderPlayers = () => {
-    let indents = [];
-    for (let i = 0; i < noOfPlayers; i++) {
-      indents.push(
-        <Player noOfPlayers={noOfPlayers} playerNo={i +1} useColors={useColors} key={i} />
-      );
-    }
+    let indents: JSX.Element[] = [];
+    players.forEach(player => indents.push(<Player players={players} player={player} useColors={useColors} key={player.id} />));
     return indents;
   }
 
   return (
     <div className="counter">
       <h1>Counter</h1>
-      <p>Det er {noOfPlayers} antall spillere</p>
+      {/*<p>Det er {players.length} antall spillere</p>*/}
 
       <div className="player-containers">
         { renderPlayers() }

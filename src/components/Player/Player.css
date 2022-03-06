@@ -48,12 +48,21 @@
     padding: 0.3rem;
 }
 
+.points-arrow:hover {
+    cursor: pointer;
+}
+
 .no-margin {
     margin: 0;
 }
 
-.hidden {
-    display: none;
+.clickable {
+    border-bottom: 1px solid transparent;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    border-bottom: 1px solid;
 }
 
 .color--1 {

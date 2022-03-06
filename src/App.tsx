@@ -13,12 +13,13 @@ import Counter from "./components/Counter/Counter";
 function App() {
 
   const [noOfPlayers, setNoOfPlayers] = useState(2);
+  const [players, setPlayers] = useState<{name: string, id: number }[]>([ {name: '', id: 0}, {name: '', id: 1}]);
 
   return (
     <Router basename="/Magic">
         <Routes>
-          <Route path="/" element={<Home setNoOfPlayers={setNoOfPlayers} noOfPlayers={noOfPlayers}/>}/>
-          <Route path="/counter" element={<Counter noOfPlayers={noOfPlayers}/>}/>
+          <Route path="/" element={<Home setPlayers={setPlayers} players={players} />} />
+          <Route path="/counter" element={<Counter players={players} />}/>
         </Routes>
     </Router>
   );
