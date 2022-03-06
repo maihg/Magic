@@ -47,7 +47,7 @@ const Home: React.FC<Props> = ({ players, setPlayers}) => {
         <h1>Magic - Are you dead yet?</h1>
 
         <div>
-          <p>Velg antall spillere</p>
+          <p>Fyll inn navn på spillere <br />(2 - 4 spillere)</p>
           <div>
             {players.length === 0 && <p>Legg til en spiller ...</p>}
             {players.map((player) =>

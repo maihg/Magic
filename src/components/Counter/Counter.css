@@ -12,6 +12,10 @@
     margin: 1.5rem 0.5rem;
 }
 
+.counter-button:not(:last-child) {
+    margin-bottom: 0;
+}
+
 .counter-button:hover {
     cursor: pointer;
     background-color: #dddddd;
