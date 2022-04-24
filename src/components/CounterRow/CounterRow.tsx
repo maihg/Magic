@@ -5,15 +5,16 @@ interface Props {
   text: string;
   fromNumber?: number;
   toNumber: number;
-  setLives?: React.Dispatch<React.SetStateAction<number>>;
+  addLife: () => void;
+  removeLife: () => void;
 }
 
-const CounterRow: React.FC<Props> = ({ text, fromNumber, toNumber, setLives }) => {
+const CounterRow: React.FC<Props> = ({ text, fromNumber, toNumber, addLife, removeLife }) => {
   const [currentNumber, setCurrentNumber] = useState(fromNumber || 0);
 
   const add = () => {
-    if (!text.includes("Poison") && setLives) {
-      setLives(lives => lives - 1);
+    if (!text.includes("Poison")) {
+      removeLife();
     }
 
     if (currentNumber < toNumber - 1) {
@@ -27,8 +28,8 @@ const CounterRow: React.FC<Props> = ({ text, fromNumber, toNumber, setLives }) =
   const subtract = () => {
     if (currentNumber >= 1) {
       setCurrentNumber(currentNumber - 1);
-      if (!text.includes("Poison") && setLives) {
-        setLives(lives => lives + 1);
+      if (!text.includes("Poison")) {
+        addLife();
       }
     }
   }

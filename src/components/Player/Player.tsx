@@ -46,7 +46,7 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
   const renderCommanderRows = () => {
     let indents: JSX.Element[] = [];
     players.forEach((p, i) => p !== player &&
-      indents.push(<CounterRow text={`${p.name} 🧛`} toNumber={21} setLives={setLives} key={i} />))
+      indents.push(<CounterRow text={`${p.name} 🧛`} toNumber={21} addLife={addLife} removeLife={removeLife} key={i} />))
     return indents;
   }
 
@@ -74,7 +74,7 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
       </div>
 
       <div className={`card-bottom ${bottomHidden && 'hidden'}`}>
-        <CounterRow text="Poison 💀" toNumber={11} />
+        <CounterRow text="Poison 💀" toNumber={11} addLife={addLife} removeLife={removeLife}/>
         <p>Commander damage fra ...</p>
         {renderCommanderRows()}
       </div>
