@@ -3,8 +3,7 @@
     margin: 0.8rem;
     border: 2px solid #ffffff;
     border-radius: 1.5rem;
-    width: 70vw;
-    max-width: 800px;
+    min-width: min(50vw, 400px);
 }
 .player h1 {
     transform: translateY(-0.2rem);
@@ -81,17 +80,47 @@
     border-radius: 0 0 0.5em 0.5em;
 }
 
-.button-top:hover,
-.button-bottom:hover {
-    cursor: pointer;
-    background-color: #fff;
-    opacity: 0.1;
+/* Wrapper denne i en media fordi iOS blir stuck i hover etter trykk */
+@media (hover: hover) {
+    .button-top:hover,
+    .button-bottom:hover {
+        cursor: pointer;
+        background-color: #fff;
+        opacity: 0.1;
+    }
 }
 
 .button-top:active,
 .button-bottom:active {
     background-color: #fff;
     opacity: 0.2;
+}
+
+.change-of-points {
+    background-color: transparent;
+    color: #fff;
+    opacity: 1;
+    position: absolute;
+    top: -20px;
+    right: -12px;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.5rem;
+    animation: fade-in 550ms;
+}
+
+.change-of-points.hidden {
+    margin: 0;
+    height: 0;
+    width: 0;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        font-size: 3rem;
+    }
 }
 
 .no-margin {

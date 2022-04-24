@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './Player.css';
 import CounterRow from "../CounterRow/CounterRow";
 
@@ -11,17 +11,36 @@ interface Props {
 const Player: React.FC<Props> = ({ players, player, useColors }) => {
   const [lives, setLives] = useState(40);
   const [bottomHidden, setBottomHidden] = useState(true);
+  const [resentChange, setResentChange] = useState(0);
+  const changedRef = useRef(0);
 
   useEffect(() => {
     if (lives === 0) alert("DEAD!");
   }, [lives]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (resentChange === changedRef.current) {
+        setResentChange(0);
+        changedRef.current = 0;
+      }
+    }, 1200);
+  }, [resentChange]);
+
   const addLife = () => {
-    if (lives < 40) setLives(lives => lives + 1);
+    if (lives < 40) {
+      setLives(lives => lives + 1);
+      setResentChange(resentChange => resentChange + 1);
+      changedRef.current = changedRef.current + 1;
+    }
   };
 
   const removeLife = () => {
-    if (lives > 0) setLives(lives => lives - 1);
+    if (lives > 0) {
+      setLives(lives => lives - 1);
+      setResentChange(resentChange => resentChange - 1);
+      changedRef.current = changedRef.current - 1;
+    }
   };
 
   const renderCommanderRows = () => {
@@ -47,6 +66,10 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
           <h1>{lives}</h1>
           <div className="button-top" onClick={addLife} />
           <div className="button-bottom" onClick={removeLife} />
+
+          <div className={`change-of-points ${resentChange === 0 ? "hidden" : ""}`}>
+            <p>{resentChange>0 && "+"}{resentChange}</p>
+          </div>
         </div>
       </div>
 
@@ -55,6 +78,8 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
         <p>Commander damage fra ...</p>
         {renderCommanderRows()}
       </div>
+
+
 
     </div>
   );
