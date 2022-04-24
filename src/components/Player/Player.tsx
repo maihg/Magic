@@ -16,9 +16,13 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
     if (lives === 0) alert("DEAD!");
   }, [lives]);
 
-  const subtract = () => {
-    setLives(lives => lives - 1);
-  }
+  const addLife = () => {
+    if (lives < 40) setLives(lives => lives + 1);
+  };
+
+  const removeLife = () => {
+    if (lives > 0) setLives(lives => lives - 1);
+  };
 
   const renderCommanderRows = () => {
     let indents: JSX.Element[] = [];
@@ -35,13 +39,14 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
           <p className="no-margin">{player.name}</p>
           <p className="no-margin clickable" onClick={() => setBottomHidden(!bottomHidden)}>Special damage {bottomHidden ? "↓" : "↑"}</p>
         </div>
-        <div className="flex--centered-row">
+        <div className="flex--centered-row points-container">
           <div className="flex--col">
-            <button className="points-arrow" onClick={() => setLives(lives + 1)}>▲</button>
-            <button className="points-arrow" onClick={subtract}>▼</button>
+            <button className="points-arrow">▲</button>
+            <button className="points-arrow">▼</button>
           </div>
-
           <h1>{lives}</h1>
+          <div className="button-top" onClick={addLife} />
+          <div className="button-bottom" onClick={removeLife} />
         </div>
       </div>
 
