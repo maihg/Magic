@@ -27,8 +27,7 @@ const Counter: React.FC<Props> = ({ players}) => {
 
 
       <button className="counter-button" onClick={() => setUseColors(!useColors)}>{useColors ? "Av med fargene - jeg ser ikke teksten" : "På med fargene!"}</button>
-      {/* TODO: finn ut hvordan knappen under kan funke i live-versjon */}
-      {/*<button className="counter-button" onClick={() => window.location.reload()}>🔄 Nullstill teller</button>*/}
+      <button className="counter-button" onClick={() => window.location.reload()}>🔄 Nullstill teller</button>
     </div>
   );
 }
