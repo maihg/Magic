@@ -44,7 +44,8 @@ const Home: React.FC<Props> = ({ players, setPlayers}) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Magic - Are you dead yet?</h1>
+        <h1>Magic</h1>
+        <h2>A counter for magic the gathering</h2>
 
         <div>
           <p>Fyll inn navn på spillere <br />(2 - 4 spillere)</p>
