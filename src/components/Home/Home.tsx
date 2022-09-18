@@ -36,7 +36,7 @@ const Home: React.FC<Props> = ({ players, setPlayers}) => {
       alert('Du må fylle inn navn på alle spillerene');
       return;
     }
-    navigate('/counter')
+    navigate('/counter-mobile')
   };
 
 

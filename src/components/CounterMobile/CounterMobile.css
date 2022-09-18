@@ -1,0 +1,33 @@
+.counter {
+    margin: 1rem 1.2rem;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.menu > p {
+    margin: 0 0 0 1em;
+}
+
+.players-2 {
+    display: flex;
+    transform: rotate(-90deg);
+    margin-top: 50%;
+}
+
+.players-2 > .player:nth-child(1) {
+    transform: rotate(180deg);
+}
+
+.players-3 {
+    border: 2px solid blue;
+}
+
+.players-4 {
+    border: 2px solid yellow;
+}
+

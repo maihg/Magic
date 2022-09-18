@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Counter from "./components/Counter/Counter";
+import CounterMobile from "./components/CounterMobile/CounterMobile";
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
     <Router basename="/Magic">
         <Routes>
           <Route path="/" element={<Home setPlayers={setPlayers} players={players} />} />
-          <Route path="/counter" element={<Counter players={players} />}/>
+          <Route path="/counter" element={<Counter players={players} />} />
+          <Route path="/counter-mobile" element={<CounterMobile players={players} />} />
         </Routes>
     </Router>
   );
