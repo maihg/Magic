@@ -8,16 +8,14 @@ import {
 import Home from "./components/Home/Home";
 import Counter from "./components/Counter/Counter";
 import { IPlayer } from "./utils/types";
+import {getPlayers} from "./utils/storage";
+
+const defaultPlayers = [{name: '', id: 0}, {name: '', id: 1}]
 
 function App() {
 
-  const [players, setPlayers] = useState<IPlayer[]>([ {name: '', id: 0}, {name: '', id: 1}]);
+  const [players, setPlayers] = useState<IPlayer[]>(getPlayers() ?? defaultPlayers);
   const [noOfLives, setNoOfLives] = useState<number>(40);
-
-  useEffect(() => {
-    let list = window.sessionStorage.getItem("players");
-    if (list !== null) setPlayers(JSON.parse(list));
-  }, []);
 
   useEffect(() => {
     window.sessionStorage.setItem("players", JSON.stringify(players));

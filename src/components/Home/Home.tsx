@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import './Home.css';
 import { useNavigate } from "react-router-dom"
 import PlayerInput from '../PlayerInput/PlayerInput';
@@ -34,8 +34,6 @@ const Home: React.FC<Props> = ({ players, setPlayers, noOfLives, setNoOfLives}) 
     navigate('/counter')
   };
 
-
-
   return (
     <div className="App">
       <header className="App-header">
@@ -47,7 +45,7 @@ const Home: React.FC<Props> = ({ players, setPlayers, noOfLives, setNoOfLives}) 
           <div>
             {players.length === 0 && <p>Legg til en spiller ...</p>}
             {players.map((player) =>
-              <PlayerInput key={player.id} id={player.id} players={players} setPlayers={setPlayers}  />)}
+              <PlayerInput key={player.id} id={player.id} name={player.name} players={players} setPlayers={setPlayers}  />)}
             <button className="App-button-secondary" onClick={addPlayer} disabled={players.length > 3}>+ Legg til spiller</button>
           </div>
 
@@ -57,7 +55,7 @@ const Home: React.FC<Props> = ({ players, setPlayers, noOfLives, setNoOfLives}) 
               type="number"
               min={10}
               max={40}
-              name="lives"
+              id="lives"
               className="App-input"
               placeholder="Antall liv"
               value={noOfLives}
