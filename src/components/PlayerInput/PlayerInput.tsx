@@ -1,21 +1,25 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
+import { IPlayer } from "../../utils/types";
 
 
 interface Props {
   id: number;
-  players: {name: string, id: number }[];
-  setPlayers: React.Dispatch<React.SetStateAction<{name: string, id: number }[]>>;
-  removePlayer: (id: number) => void;
+  players: IPlayer[];
+  setPlayers: Dispatch<SetStateAction<IPlayer[]>>;
 }
 
-const PlayerInput: React.FC<Props> = ({ id, players, setPlayers, removePlayer }) => {
+const PlayerInput: React.FC<Props> = ({ id, players, setPlayers }) => {
   const [name, setName] = useState('');
 
+  const removePlayer = (id: number) => {
+    setPlayers(names => names.filter(n => n.id !== id));
+  };
+
   const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("id: " + id)
     setName(e.target.value);
     const temp  = [...players];
-    let item = players.filter(n => n.id === id)[0];
+    let item = players.find(n => n.id === id);
+    if (!item) return
     item.name = e.target.value;
     temp.map(player => player.id === id ? item : player);
     setPlayers(temp);

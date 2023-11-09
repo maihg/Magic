@@ -1,15 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './Player.css';
 import CounterRow from "../CounterRow/CounterRow";
+import { IPlayer } from "../../utils/types";
 
 interface Props {
-  players: { name: string, id: number }[];
-  player: { name: string, id: number };
+  players: IPlayer[];
+  player: IPlayer;
   useColors: boolean;
+  noOfLives: number;
 }
 
-const Player: React.FC<Props> = ({ players, player, useColors }) => {
-  const [lives, setLives] = useState(40);
+const Player: React.FC<Props> = ({ players, player, useColors, noOfLives }) => {
+  const [lives, setLives] = useState(noOfLives);
   const [bottomHidden, setBottomHidden] = useState(true);
   const [resentChange, setResentChange] = useState(0);
   const changedRef = useRef(0);
@@ -28,11 +30,9 @@ const Player: React.FC<Props> = ({ players, player, useColors }) => {
   }, [resentChange]);
 
   const addLife = () => {
-    if (lives < 40) {
-      setLives(lives => lives + 1);
-      setResentChange(resentChange => resentChange + 1);
-      changedRef.current = changedRef.current + 1;
-    }
+    setLives(lives => lives + 1);
+    setResentChange(resentChange => resentChange + 1);
+    changedRef.current = changedRef.current + 1;
   };
 
   const removeLife = () => {

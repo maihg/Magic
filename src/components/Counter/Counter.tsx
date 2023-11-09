@@ -4,15 +4,18 @@ import Player from "../Player/Player";
 
 interface Props {
   players: { name: string, id: number }[];
+  noOfLives: number;
 }
 
-const Counter: React.FC<Props> = ({ players}) => {
+const Counter: React.FC<Props> = ({ players, noOfLives}) => {
 
   const [useColors, setUseColors] = useState(true);
 
   const renderPlayers = () => {
     let indents: JSX.Element[] = [];
-    players.forEach(player => indents.push(<Player players={players} player={player} useColors={useColors} key={player.id} />));
+    players.forEach(player => indents.push(
+      <Player players={players} player={player} useColors={useColors} key={player.id} noOfLives={noOfLives} />
+    ));
     return indents;
   }
 

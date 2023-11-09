@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-// import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -8,10 +7,12 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Counter from "./components/Counter/Counter";
+import { IPlayer } from "./utils/types";
 
 function App() {
 
-  const [players, setPlayers] = useState<{name: string, id: number }[]>([ {name: '', id: 0}, {name: '', id: 1}]);
+  const [players, setPlayers] = useState<IPlayer[]>([ {name: '', id: 0}, {name: '', id: 1}]);
+  const [noOfLives, setNoOfLives] = useState<number>(40);
 
   useEffect(() => {
     let list = window.sessionStorage.getItem("players");
@@ -25,8 +26,10 @@ function App() {
   return (
     <Router basename="/Magic">
         <Routes>
-          <Route path="/" element={<Home setPlayers={setPlayers} players={players} />} />
-          <Route path="/counter" element={<Counter players={players} />}/>
+          <Route path="/" element={
+            <Home setPlayers={setPlayers} players={players} noOfLives={noOfLives} setNoOfLives={setNoOfLives} />
+          } />
+          <Route path="/counter" element={<Counter players={players} noOfLives={noOfLives} />}/>
         </Routes>
     </Router>
   );
